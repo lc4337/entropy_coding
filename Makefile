@@ -17,9 +17,9 @@ TEST_OBJS = $(patsubst $(TEST_DIR)/%.cpp,$(BUILD_DIR)%.o,$(TEST_SRCS))
 CXXFLAGS = -Wall -Wextra -pedantic -std=c++11 -I$(INC_DIR) -p
 
 # Targets
-all: compress
+all: myzip
 
-compress: $(OBJS)
+myzip: $(OBJS)
 	$(CXX) $(LDFLAGS) $^ -o $@
 
 creat-dir:
@@ -38,4 +38,4 @@ test: $(TEST_OBJS) $(filter-out $(BUILD_DIR)/main.o,$(OBJS))
 .PHONY: clean
 
 clean:
-	rm -f $(BUILD_DIR)/* test compress
+	rm -f $(BUILD_DIR)/* test myzip
