@@ -1,8 +1,3 @@
-/*
-* A C++ compression and decompression program based on Huffman Coding.
-* 实现利用霍夫曼编码对文件进行压缩以及解压缩
-*/
-
 #include <bits/stdc++.h>
 #include "huffman.h"
 
