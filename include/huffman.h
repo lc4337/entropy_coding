@@ -4,6 +4,7 @@
 */
 #ifndef HUFFMAN_H_INCLUDED
 #define HUFFMAN_H_INCLUDED
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -47,7 +48,5 @@ class Huffman {
     void printCode();
 
 };
-
-#include "huffman.cpp"
 
 #endif
