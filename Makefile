@@ -14,7 +14,7 @@ TEST_SRCS = $(wildcard $(TEST_DIR)/*.cpp)
 TEST_OBJS = $(patsubst $(TEST_DIR)/%.cpp,$(BUILD_DIR)%.o,$(TEST_SRCS))
 
 # Flags
-CXXFLAGS = -Wall -Wextra -pedantic -std=c++11 -I$(INC_DIR)
+CXXFLAGS = -Wall -Wextra -pedantic -std=c++11 -I$(INC_DIR) -p
 
 # Targets
 all: compress
@@ -22,10 +22,13 @@ all: compress
 compress: $(OBJS)
 	$(CXX) $(LDFLAGS) $^ -o $@
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+creat-dir:
+	mkdir -p $(BUILD_DIR)
+
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp creat-dir
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(BUILD_DIR)/%.o: $(TEST_DIR)/%.cpp
+$(BUILD_DIR)/%.o: $(TEST_DIR)/%.cpp creat-dir
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 test: $(TEST_OBJS) $(filter-out $(BUILD_DIR)/main.o,$(OBJS))
@@ -35,4 +38,4 @@ test: $(TEST_OBJS) $(filter-out $(BUILD_DIR)/main.o,$(OBJS))
 .PHONY: clean
 
 clean:
-	rm -f $(BUILD_DIR)/* test
+	rm -f $(BUILD_DIR)/* test compress
